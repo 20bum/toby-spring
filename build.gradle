@@ -9,30 +9,38 @@ repositories {
     mavenCentral()
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+tasks.withType(Test) {
+    jvmArgs '-Dfile.encoding=UTF-8'
+}
+
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
-
-    testCompileOnly 'org.projectlombok:lombok:1.18.22'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     // https://mvnrepository.com/artifact/net.sourceforge.cglib/com.springsource.net.sf.cglib
-    implementation group: 'net.sourceforge.cglib', name: 'com.springsource.net.sf.cglib', version: '2.2.0'
+//    implementation group: 'net.sourceforge.cglib', name: 'com.springsource.net.sf.cglib', version: '2.2.0'
     // https://mvnrepository.com/artifact/org.apache.commons/com.springsource.org.apache.commons.logging
-    implementation group: 'org.apache.commons', name: 'com.springsource.org.apache.commons.logging', version: '1.1.1'
+//    implementation group: 'org.apache.commons', name: 'com.springsource.org.apache.commons.logging', version: '1.1.1'
     // https://mvnrepository.com/artifact/org.springframework/spring-asm
-    implementation group: 'org.springframework', name: 'spring-asm', version: '3.1.4.RELEASE'
+//    implementation group: 'org.springframework', name: 'spring-asm', version: '3.1.4.RELEASE'
     // https://mvnrepository.com/artifact/org.springframework/spring-beans
-    implementation group: 'org.springframework', name: 'spring-beans', version: '5.3.18'
+    implementation group: 'org.springframework', name: 'spring-beans', version: '5.3.19'
     // https://mvnrepository.com/artifact/org.springframework/spring-context
-    implementation group: 'org.springframework', name: 'spring-context', version: '5.3.18'
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.3.19'
     // https://mvnrepository.com/artifact/org.springframework/spring-core
-    implementation group: 'org.springframework', name: 'spring-core', version: '5.3.18'
-    // https://mvnrepository.com/artifact/org.springframework/spring-expression
-    implementation group: 'org.springframework', name: 'spring-expression', version: '5.3.18'
+    implementation group: 'org.springframework', name: 'spring-core', version: '5.3.19'
+//     https://mvnrepository.com/artifact/org.springframework/spring-expression
+    implementation group: 'org.springframework', name: 'spring-expression', version: '5.3.19'
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    implementation 'com.h2database:h2:2.1.212'
+    testImplementation 'com.h2database:h2:2.1.212'
+
 
 
 

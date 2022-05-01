@@ -8,7 +8,7 @@ public class DConnectionMaker implements ConnectionMaker {
     public Connection makeConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.h2.Driver");
         Connection c = DriverManager.getConnection(
-                "jdbc:h2:/Volumes/dev/db/h2/spring",
+                "jdbc:h2:D:\\workspace\\workspace-h2\\toby-spring;AUTO_SERVER=true",
                 "sa",
                 ""
         );
