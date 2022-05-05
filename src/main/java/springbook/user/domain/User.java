@@ -1,6 +1,5 @@
 package springbook.user.domain;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
