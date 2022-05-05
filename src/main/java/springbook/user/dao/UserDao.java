@@ -4,24 +4,24 @@ import springbook.user.domain.User;
 
 import java.sql.*;
 
-public class UserDao {
+/*
+UserDao의 관심사항
+1. DB 연결을 위한 커넥션을 어떻게 가져올까
+2. DB에 보낼 Statement를 만들고 실행하는 것
+3. 사용한 리소스(Statement, Connection)를 닫아주는것
+ */
+public abstract class UserDao {
 
     /*
-    JDBC를 이용하는 작업의 일반적인 순서
-    1. DB연결을 위한 Connection을 가져온다.
-    2. SQL을 담은 Statement(또는 PreparedStatement)를 만든다.
-    3. 만들어진 Statement를 실행한다.
-    4. 조회의 경우 SQL 쿼리의 실행 결과를 ResultSet으로 받아서 정보를 저장할 오브젝트(User)에 옮겨준다.
-    5. JDBC API가 만들어내는 예외를 잡아서 직접 처리하거나, 메소드 밖으로 던진다.
+    1-2.관심사의 분리
+        - 중복코드(Connection)의 메소드 추출: getConnection()
+        - 서브클래스에서 UserDao를 상속받아 추상 메서드인 getConnection 메서드를 각자 구현할수도 있다
+            문제점: 1. 슈퍼클래스의 변경이 있을때 서브클래스도 같이 수정해야 할 수 있다.
+                   2. 다른 Dao가 생긴다면 Dao마다 getConnection 메서드가 중복될것이다.
      */
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Class.forName("org.h2.Driver");
-        Connection c = DriverManager.getConnection(
-                "jdbc:h2:D:\\workspace\\workspace-h2\\toby-spring;AUTO_SERVER=true",
-                "sa",
-                ""
-        );
+        Connection c = getConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "insert into users(id, name, password) values(?, ?, ?)"
@@ -37,12 +37,7 @@ public class UserDao {
     }
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Class.forName("org.h2.Driver");
-        Connection c = DriverManager.getConnection(
-                "jdbc:h2:D:\\workspace\\workspace-h2\\toby-spring;AUTO_SERVER=true",
-                "sa",
-                ""
-        );
+        Connection c = getConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
@@ -63,5 +58,7 @@ public class UserDao {
         return user;
     }
 
+    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 
 }
+
