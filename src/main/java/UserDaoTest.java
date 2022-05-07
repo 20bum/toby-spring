@@ -9,7 +9,9 @@ import springbook.user.domain.User;
 import java.sql.SQLException;
 
 /*
-1-5. 스프링 IoC
+1-6. 싱글톤 레지스트리와 오브젝트 스코프
+
+애플리케이션 컨텍스트는 IoC컨테이너 이면서, 동시에 싱글톤을 저장하고 관리하는 싱글톤 레지스트리 이다.
  */
 public class UserDaoTest {
 
