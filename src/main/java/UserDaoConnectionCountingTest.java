@@ -7,14 +7,6 @@ import springbook.user.domain.User;
 
 import java.sql.SQLException;
 
-/*
-1-7. 의존관계주입(DI, Dependency Injection)
-
-DI를 원하는 오브젝트는 먼저 자기 자신이 컨테이너가 관리하는 빈이 돼야 한다.
-
-DI기술을 사용하면 런타임 클래스에 대한 의존관계가 나타나지 않고, 인터페이스를 통해 결합도가 낮은 코드를 만들므로,
-변경에 영향을 받지않고, 확장에는 자유로워진다.
- */
 public class UserDaoConnectionCountingTest {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
