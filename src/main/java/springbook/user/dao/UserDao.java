@@ -5,12 +5,6 @@ import springbook.user.domain.User;
 import javax.sql.DataSource;
 import java.sql.*;
 
-/*
-UserDao의 관심사항
-1. DB 연결을 위한 커넥션을 어떻게 가져올까
-2. DB에 보낼 Statement를 만들고 실행하는 것
-3. 사용한 리소스(Statement, Connection)를 닫아주는것
- */
 public class UserDao {
 
     private DataSource dataSource;
