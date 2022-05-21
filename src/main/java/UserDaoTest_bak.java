@@ -7,13 +7,10 @@ import springbook.user.domain.User;
 import java.sql.SQLException;
 
 /*
-UserDaoTest의 문제
-- 수동 확인 작업의 번거로움
-        : 결과를 확인하는 일은 사람의 책임이므로 완전 자동 테스트 방법이라 말할수 없다.
-- 실행 작업의 번거로움
-        : DAO가 여러개가 되고 그에 대한 main()메소드도 그만큼 있다면, 전체기능을 테스트하기위해 main메소드를 무수히많이 실행해야함.
+2-2. UserDaoTest 개선
+
  */
-public class UserDaoTest {
+public class UserDaoTest_bak {
 
     /*
     - 자바에서 가장 손쉽게 실행 가능한 main() 메소드를 이요한다.
@@ -36,9 +33,13 @@ public class UserDaoTest {
         System.out.println(user.getId() + " 등록 성공");
 
         User user2 = dao.get(user.getId());
-        System.out.println(user2.getName());
-        System.out.println(user2.getPassword());
 
-        System.out.println(user2.getId() + " 조회 성공");
+        if (!user.getName().equals(user2.getName())) {
+            System.out.println("테스트 실패 (name)");
+        } else if (!user.getPassword().equals(user2.getPassword())) {
+            System.out.println("테스트 실패 (password)");
+        } else {
+            System.out.println("조회 테스트 성공");
+        }
     }
 }
